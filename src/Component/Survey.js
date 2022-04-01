@@ -5,38 +5,49 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Survey() {
   const [commentList, setCommentList] = useState({});
-  const { title, header_img, created_datetime, updated_datetime, Blocks } =
-    commentList;
+  const [babo, setBabo] = useState([]);
+  const {
+    payload,
+    title,
+    header_img,
+    created_datetime,
+    updated_datetime,
+    // blocks,
+  } = commentList;
 
   const navigate = useNavigate();
 
   const goToQuestion = () => {
-    navigate('/SurveyQuestion');
+    navigate('/surveyQuestion');
   };
 
   useEffect(() => {
-    fetch('/data/nana.json', {
+    fetch('/data/surveydata.json', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setCommentList(data);
+        setCommentList(data.payload);
+        setBabo(data.payload.blocks);
       });
   }, []);
+  // console.log(babo[0].block_type);
+
   return (
     <div>
       <Wrap>
         <HeaderWrap>
           <HeaderImg src={header_img} />
           <Title>{title}</Title>
+
+          <NextButton onClick={goToQuestion}>시작</NextButton>
           <CreatedDatetime>
             설문조사 생성시간 : {created_datetime}
           </CreatedDatetime>
           <UpdatedDatetime>
             설문조사 수정시간 : {updated_datetime}
           </UpdatedDatetime>
-          <Block>{Blocks}</Block>
-          <NextButton onClick={goToQuestion}>시작</NextButton>
+          <Block>{babo[0].option.items[0]}</Block>
         </HeaderWrap>
       </Wrap>
     </div>
@@ -57,7 +68,6 @@ export const HeaderImg = styled.img`
 
 export const HeaderWrap = styled.div`
   border: 1px solid lightgray;
-
   display: flex;
   align-items: center;
   flex-direction: column;
