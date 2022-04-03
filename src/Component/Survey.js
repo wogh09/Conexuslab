@@ -5,15 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Survey() {
   const [commentList, setCommentList] = useState({});
-  const [babo, setBabo] = useState([]);
-  const {
-    payload,
-    title,
-    header_img,
-    created_datetime,
-    updated_datetime,
-    // blocks,
-  } = commentList;
+  const { title, header_img, created_datetime, updated_datetime } = commentList;
 
   const navigate = useNavigate();
 
@@ -28,10 +20,8 @@ export default function Survey() {
       .then(res => res.json())
       .then(data => {
         setCommentList(data.payload);
-        setBabo(data.payload.blocks);
       });
   }, []);
-  // console.log(babo[0].block_type);
 
   return (
     <div>
@@ -39,7 +29,6 @@ export default function Survey() {
         <HeaderWrap>
           <HeaderImg src={header_img} />
           <Title>{title}</Title>
-
           <NextButton onClick={goToQuestion}>시작</NextButton>
           <CreatedDatetime>
             설문조사 생성시간 : {created_datetime}
@@ -47,7 +36,6 @@ export default function Survey() {
           <UpdatedDatetime>
             설문조사 수정시간 : {updated_datetime}
           </UpdatedDatetime>
-          <Block>{babo[0].option.items[0]}</Block>
         </HeaderWrap>
       </Wrap>
     </div>
