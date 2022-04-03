@@ -1,15 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function SurveyQuestion() {
   const [questionList, setquestionList] = useState([]);
   const [select, setSelect] = useState('WorkandLifeBalance');
-  const [isChecked, setChecked] = useState(false);
+  const [isChecked, setChecked] = useState([]);
+  const [checkedInputs, setCheckedInputs] = useState(['']);
+
+  const changeHandler = (checked, id) => {
+    if (checked) {
+      setCheckedInputs([...checkedInputs, id]);
+      console.log('체크 반영 완료');
+    } else {
+      setCheckedInputs(checkedInputs.filter(el => el !== id));
+      console.log('체크 해제 반영 완료');
+    }
+  };
+
+  // const isAllChecked = checkedInputs.length === CheckBoxItems.length;
+
+  const navigate = useNavigate();
 
   const handleSelectChange = e => {
     setSelect(e.target.value);
   };
+  const goToFinal = () => {
+    navigate('/surveyComplete');
+  };
+
+  // const changeHandler = (checked, id) => {
+  //   if (checked) {
+  //     setChecked([...isChecked, id]);
+  //   } else {
+  //     setChecked(isChecked.filter(el => el !== id));
+  //   }
+  // };
 
   useEffect(() => {
     fetch('/data/surveydata.json', {
@@ -86,16 +113,58 @@ export default function SurveyQuestion() {
           설문조사 수정시간 : {questionList[0].updated_datetime}
         </Datetime>
         <Title>{questionList[1].option.title}</Title>
-        <ItemBox>
-          <Items>{questionList[1].option.items[0]}</Items>
-          <Items>{questionList[1].option.items[1]}</Items>
-          <Items>{questionList[1].option.items[2]}</Items>
-          <Items>{questionList[1].option.items[3]}</Items>
-          <Items>{questionList[1].option.items[4]}</Items>
-        </ItemBox>
+        <CheckBoxItemBox>
+          <CheckBoxItems
+            type="checkbox"
+            id="check1"
+            onChange={e => {
+              changeHandler(e.currentTarget.checked, 'check1');
+            }}
+            checked={checkedInputs.includes('check1') ? true : false}
+          />
+          {questionList[0].option.items[0]}
+          <CheckBoxItems
+            type="checkbox"
+            id="check2"
+            value="check2"
+            onChange={e => {
+              changeHandler(e.currentTarget.checked, 'check2');
+            }}
+            checked={checkedInputs.includes('check2') ? true : false}
+          />
+          {questionList[1].option.items[1]}
+          <CheckBoxItems
+            type="checkbox"
+            id="check3"
+            onChange={e => {
+              changeHandler(e.currentTarget.checked, 'check3');
+            }}
+            checked={checkedInputs.includes('check3') ? true : false}
+          />
+          {questionList[1].option.items[2]}
+          <CheckBoxItems
+            type="checkbox"
+            id="check4"
+            onChange={e => {
+              changeHandler(e.currentTarget.checked, 'check4');
+            }}
+            checked={checkedInputs.includes('check4') ? true : false}
+          />
+          {questionList[1].option.items[3]}
+          <CheckBoxItems
+            type="checkbox"
+            id="check5"
+            onChange={e => {
+              changeHandler(e.currentTarget.checked, 'check5');
+            }}
+            checked={checkedInputs.includes('check5') ? true : false}
+          />
+          {questionList[1].option.items[4]}
+        </CheckBoxItemBox>
         <Datetime>
           설문조사 수정시간 : {questionList[1].updated_datetime}
         </Datetime>
+        <NextButton onClick={goToFinal}>다음</NextButton>
       </Wrap>
     </div>
   );
@@ -107,17 +176,22 @@ export const Wrap = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  border: 1px solid lightgray;
   font-size: 20px;
 `;
 
 export const Title = styled.div`
+  font-weight: 700;
   padding-bottom: 15px;
+  margin: 50px 0px 50px 0px;
 `;
 export const Items = styled.div``;
 
 export const ItemBox = styled.div``;
 
-export const Datetime = styled.div``;
+export const Datetime = styled.div`
+  margin-top: 30px;
+`;
 
 export const RadioBox = styled.div`
   display: flex;
@@ -173,4 +247,37 @@ export const RadioButton = styled.input`
       }
     }
   `}
+`;
+
+export const Index = styled.li`
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+`;
+export const Checkbox = styled.input`
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+`;
+export const CheckBoxItems = styled.input`
+  margin: 0px 10px 0px 10px;
+  width: 20px;
+  height: 20px;
+`;
+
+export const CheckBoxItemBox = styled.label`
+  display: flex;
+`;
+export const NextButton = styled.button`
+  width: 200px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 25px;
+  background-color: wheat;
+  cursor: pointer;
+  :hover {
+    border-color: black;
+  }
 `;
