@@ -8,7 +8,6 @@
 
 ![React-App-Chrome-2022-04-04-13-25-07](https://user-images.githubusercontent.com/84889602/161512420-629ffd47-1e4d-4342-86b3-5e7f0ea27d28.gif)
 
-## 적용 기술 및 협업 툴 
 
 ### 적용 기술
 
