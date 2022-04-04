@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export default function SurveyQuestion() {
   const [questionList, setquestionList] = useState([]);
   const [select, setSelect] = useState('WorkandLifeBalance');
-  const [isChecked, setChecked] = useState([]);
+
   const [checkedInputs, setCheckedInputs] = useState(['']);
 
   const changeHandler = (checked, id) => {
@@ -19,24 +18,9 @@ export default function SurveyQuestion() {
     }
   };
 
-  // const isAllChecked = checkedInputs.length === CheckBoxItems.length;
-
-  const navigate = useNavigate();
-
   const handleSelectChange = e => {
     setSelect(e.target.value);
   };
-  const goToFinal = () => {
-    navigate('/surveyComplete');
-  };
-
-  // const changeHandler = (checked, id) => {
-  //   if (checked) {
-  //     setChecked([...isChecked, id]);
-  //   } else {
-  //     setChecked(isChecked.filter(el => el !== id));
-  //   }
-  // };
 
   useEffect(() => {
     fetch('/data/surveydata.json', {
@@ -164,7 +148,8 @@ export default function SurveyQuestion() {
         <Datetime>
           설문조사 수정시간 : {questionList[1].updated_datetime}
         </Datetime>
-        <NextButton onClick={goToFinal}>다음</NextButton>
+        <NextButton>{questionList[2].option.submitMsg}</NextButton>
+        <BtnImage src={questionList[2].option.btnImg} />
       </Wrap>
     </div>
   );
@@ -269,15 +254,18 @@ export const CheckBoxItemBox = styled.label`
   display: flex;
 `;
 export const NextButton = styled.button`
-  width: 200px;
+  width: 400px;
   border: 1px solid lightgray;
   border-radius: 10px;
+  font-size: 20px;
   margin-top: 20px;
   margin-bottom: 40px;
-  font-size: 25px;
   background-color: wheat;
   cursor: pointer;
   :hover {
     border-color: black;
   }
+`;
+export const BtnImage = styled.img`
+  width: 300px;
 `;
