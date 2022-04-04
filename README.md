@@ -7,3 +7,9 @@
 
 
 ![React-App-Chrome-2022-04-04-13-25-07](https://user-images.githubusercontent.com/84889602/161512420-629ffd47-1e4d-4342-86b3-5e7f0ea27d28.gif)
+
+###구현목록
+
+useEffet와 Fetch 함수를 통한 데이터 호출
+useState를 이용한 라디오 버튼 값 저장(단일선택)
+useState를 이용한 체크박스 값 저장(복수선택가능)
