@@ -42,34 +42,38 @@ export default function Survey() {
   );
 }
 
-export const Wrap = styled.div`
+const Wrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   font-size: 20px;
 `;
-export const HeaderImg = styled.img`
+
+const HeaderImg = styled.img`
   width: 600px;
   padding: 40px 0px 20px 0px;
 `;
 
-export const HeaderWrap = styled.div`
+const HeaderWrap = styled.div`
   border: 1px solid lightgray;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
 `;
-export const Title = styled.div``;
-export const CreatedDatetime = styled.div`
+
+const Title = styled.div``;
+
+const CreatedDatetime = styled.div`
   margin-top: 20px;
 `;
-export const UpdatedDatetime = styled.div`
+
+const UpdatedDatetime = styled.div`
   margin-top: 10px;
 `;
-export const Block = styled.div``;
-export const NextButton = styled.button`
+
+const NextButton = styled.button`
   width: 200px;
   border: 1px solid lightgray;
   border-radius: 10px;

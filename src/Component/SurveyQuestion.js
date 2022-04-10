@@ -11,10 +11,8 @@ export default function SurveyQuestion() {
   const changeHandler = (checked, id) => {
     if (checked) {
       setCheckedInputs([...checkedInputs, id]);
-      console.log('체크 반영 완료');
     } else {
       setCheckedInputs(checkedInputs.filter(el => el !== id));
-      console.log('체크 해제 반영 완료');
     }
   };
 
@@ -156,7 +154,7 @@ export default function SurveyQuestion() {
   );
 }
 
-export const Wrap = styled.div`
+const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -166,27 +164,27 @@ export const Wrap = styled.div`
   font-size: 20px;
 `;
 
-export const Title = styled.div`
+const Title = styled.div`
   font-weight: 700;
   padding-bottom: 15px;
   margin: 50px 0px 50px 0px;
 `;
-export const Items = styled.div``;
+const Items = styled.div``;
 
-export const ItemBox = styled.div``;
+const ItemBox = styled.div``;
 
-export const Datetime = styled.div`
+const Datetime = styled.div`
   margin-top: 30px;
 `;
 
-export const RadioBox = styled.div`
+const RadioBox = styled.div`
   display: flex;
   align-items: center;
   height: 48px;
   position: relative;
 `;
 
-export const RadioButtonLabel = styled.label`
+const RadioButtonLabel = styled.label`
   position: absolute;
   top: 25%;
   left: 4px;
@@ -196,7 +194,8 @@ export const RadioButtonLabel = styled.label`
   background: white;
   border: 1px solid #bebebe;
 `;
-export const RadioButton = styled.input`
+
+const RadioButton = styled.input`
   opacity: 0;
   z-index: 1;
   border-radius: 50%;
@@ -235,26 +234,17 @@ export const RadioButton = styled.input`
   `}
 `;
 
-export const Index = styled.li`
-  display: flex;
-  align-items: center;
-  padding: 4px 0;
-`;
-export const Checkbox = styled.input`
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-`;
-export const CheckBoxItems = styled.input`
+const CheckBoxItems = styled.input`
   margin: 0px 10px 0px 10px;
   width: 20px;
   height: 20px;
 `;
 
-export const CheckBoxItemBox = styled.label`
+const CheckBoxItemBox = styled.label`
   display: flex;
 `;
-export const NextButton = styled.button`
+
+const NextButton = styled.button`
   width: 400px;
   border: 1px solid lightgray;
   border-radius: 10px;
@@ -267,6 +257,7 @@ export const NextButton = styled.button`
     border-color: black;
   }
 `;
-export const BtnImage = styled.img`
+
+const BtnImage = styled.img`
   width: 300px;
 `;
