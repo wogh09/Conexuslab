@@ -6,7 +6,7 @@ export default function SurveyQuestion() {
   const [questionList, setquestionList] = useState([]);
   const [select, setSelect] = useState('WorkandLifeBalance');
 
-  const [checkedInputs, setCheckedInputs] = useState(['']);
+  const [checkedInputs, setCheckedInputs] = useState([]);
 
   const changeHandler = (checked, id) => {
     if (checked) {
@@ -31,126 +31,127 @@ export default function SurveyQuestion() {
         setquestionList(data.payload.blocks);
       });
   }, []);
-
   return (
     <div>
-      <Wrap>
-        <Title>{questionList[0].option.title}</Title>
-        <ItemBox>
-          <RadioBox>
-            <RadioButton
-              type="radio"
-              name="radio"
-              value="WorkandLifeBalance"
-              checked={select === 'WorkandLifeBalance'}
-              onChange={handleSelectChange}
+      {!!questionList.length > 0 && (
+        <Wrap>
+          <Title>{questionList[0].option.title}</Title>
+          <ItemBox>
+            <RadioBox>
+              <RadioButton
+                type="radio"
+                name="radio"
+                value="WorkandLifeBalance"
+                checked={select === 'WorkandLifeBalance'}
+                onChange={handleSelectChange}
+              />
+              <RadioButtonLabel />
+              <Items>{questionList[0].option.items[0]}</Items>
+            </RadioBox>
+            <RadioBox>
+              <RadioButton
+                type="radio"
+                name="radio"
+                value="Entertainmnet"
+                checked={select === 'Entertainmnet'}
+                onChange={handleSelectChange}
+              />
+              <RadioButtonLabel />
+              <Items>{questionList[0].option.items[1]}</Items>
+            </RadioBox>
+            <RadioBox>
+              <RadioButton
+                type="radio"
+                name="radio"
+                value="workwithGoodcoworker"
+                checked={select === 'workwithGoodcoworker'}
+                onChange={handleSelectChange}
+              />
+              <RadioButtonLabel />
+              <Items>{questionList[0].option.items[2]}</Items>
+            </RadioBox>
+            <RadioBox>
+              <RadioButton
+                type="radio"
+                name="radio"
+                value="protectMyWorkandLife"
+                checked={select === 'protectMyWorkandLife'}
+                onChange={handleSelectChange}
+              />
+              <RadioButtonLabel />
+              <Items>{questionList[0].option.items[3]}</Items>
+            </RadioBox>
+            <RadioBox>
+              <RadioButton
+                type="radio"
+                name="radio"
+                value="Etc"
+                checked={select === 'Etc'}
+                onChange={handleSelectChange}
+              />
+              <RadioButtonLabel />
+              <Items>{questionList[0].option.items[4]}</Items>
+            </RadioBox>
+          </ItemBox>
+          <Datetime>
+            설문조사 수정시간 : {questionList[0].updated_datetime}
+          </Datetime>
+          <Title>{questionList[1].option.title}</Title>
+          <CheckBoxItemBox>
+            <CheckBoxItems
+              type="checkbox"
+              id="check1"
+              onChange={e => {
+                changeHandler(e.currentTarget.checked, 'check1');
+              }}
+              checked={checkedInputs.includes('check1') ? true : false}
             />
-            <RadioButtonLabel />
-            <Items>{questionList[0].option.items[0]}</Items>
-          </RadioBox>
-          <RadioBox>
-            <RadioButton
-              type="radio"
-              name="radio"
-              value="Entertainmnet"
-              checked={select === 'Entertainmnet'}
-              onChange={handleSelectChange}
+            {questionList[0].option.items[0]}
+            <CheckBoxItems
+              type="checkbox"
+              id="check2"
+              value="check2"
+              onChange={e => {
+                changeHandler(e.currentTarget.checked, 'check2');
+              }}
+              checked={checkedInputs.includes('check2') ? true : false}
             />
-            <RadioButtonLabel />
-            <Items>{questionList[0].option.items[1]}</Items>
-          </RadioBox>
-          <RadioBox>
-            <RadioButton
-              type="radio"
-              name="radio"
-              value="workwithGoodcoworker"
-              checked={select === 'workwithGoodcoworker'}
-              onChange={handleSelectChange}
+            {questionList[1].option.items[1]}
+            <CheckBoxItems
+              type="checkbox"
+              id="check3"
+              onChange={e => {
+                changeHandler(e.currentTarget.checked, 'check3');
+              }}
+              checked={checkedInputs.includes('check3') ? true : false}
             />
-            <RadioButtonLabel />
-            <Items>{questionList[0].option.items[2]}</Items>
-          </RadioBox>
-          <RadioBox>
-            <RadioButton
-              type="radio"
-              name="radio"
-              value="protectMyWorkandLife"
-              checked={select === 'protectMyWorkandLife'}
-              onChange={handleSelectChange}
+            {questionList[1].option.items[2]}
+            <CheckBoxItems
+              type="checkbox"
+              id="check4"
+              onChange={e => {
+                changeHandler(e.currentTarget.checked, 'check4');
+              }}
+              checked={checkedInputs.includes('check4') ? true : false}
             />
-            <RadioButtonLabel />
-            <Items>{questionList[0].option.items[3]}</Items>
-          </RadioBox>
-          <RadioBox>
-            <RadioButton
-              type="radio"
-              name="radio"
-              value="Etc"
-              checked={select === 'Etc'}
-              onChange={handleSelectChange}
+            {questionList[1].option.items[3]}
+            <CheckBoxItems
+              type="checkbox"
+              id="check5"
+              onChange={e => {
+                changeHandler(e.currentTarget.checked, 'check5');
+              }}
+              checked={checkedInputs.includes('check5') ? true : false}
             />
-            <RadioButtonLabel />
-            <Items>{questionList[0].option.items[4]}</Items>
-          </RadioBox>
-        </ItemBox>
-        <Datetime>
-          설문조사 수정시간 : {questionList[0].updated_datetime}
-        </Datetime>
-        <Title>{questionList[1].option.title}</Title>
-        <CheckBoxItemBox>
-          <CheckBoxItems
-            type="checkbox"
-            id="check1"
-            onChange={e => {
-              changeHandler(e.currentTarget.checked, 'check1');
-            }}
-            checked={checkedInputs.includes('check1') ? true : false}
-          />
-          {questionList[0].option.items[0]}
-          <CheckBoxItems
-            type="checkbox"
-            id="check2"
-            value="check2"
-            onChange={e => {
-              changeHandler(e.currentTarget.checked, 'check2');
-            }}
-            checked={checkedInputs.includes('check2') ? true : false}
-          />
-          {questionList[1].option.items[1]}
-          <CheckBoxItems
-            type="checkbox"
-            id="check3"
-            onChange={e => {
-              changeHandler(e.currentTarget.checked, 'check3');
-            }}
-            checked={checkedInputs.includes('check3') ? true : false}
-          />
-          {questionList[1].option.items[2]}
-          <CheckBoxItems
-            type="checkbox"
-            id="check4"
-            onChange={e => {
-              changeHandler(e.currentTarget.checked, 'check4');
-            }}
-            checked={checkedInputs.includes('check4') ? true : false}
-          />
-          {questionList[1].option.items[3]}
-          <CheckBoxItems
-            type="checkbox"
-            id="check5"
-            onChange={e => {
-              changeHandler(e.currentTarget.checked, 'check5');
-            }}
-            checked={checkedInputs.includes('check5') ? true : false}
-          />
-          {questionList[1].option.items[4]}
-        </CheckBoxItemBox>
-        <Datetime>
-          설문조사 수정시간 : {questionList[1].updated_datetime}
-        </Datetime>
-        <NextButton>{questionList[2].option.submitMsg}</NextButton>
-        <BtnImage src={questionList[2].option.btnImg} />
-      </Wrap>
+            {questionList[1].option.items[4]}
+          </CheckBoxItemBox>
+          <Datetime>
+            설문조사 수정시간 : {questionList[1].updated_datetime}
+          </Datetime>
+          <NextButton>{questionList[2].option.submitMsg}</NextButton>
+          <BtnImage src={questionList[2].option.btnImg} />
+        </Wrap>
+      )}
     </div>
   );
 }
