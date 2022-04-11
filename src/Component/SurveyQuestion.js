@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 export default function SurveyQuestion() {
   const [questionList, setquestionList] = useState([]);
   const [select, setSelect] = useState('WorkandLifeBalance');
-
   const [checkedInputs, setCheckedInputs] = useState([]);
 
   const changeHandler = (checked, id) => {
@@ -99,12 +98,13 @@ export default function SurveyQuestion() {
             <CheckBoxItems
               type="checkbox"
               id="check1"
+              value="check1"
               onChange={e => {
                 changeHandler(e.currentTarget.checked, 'check1');
               }}
               checked={checkedInputs.includes('check1') ? true : false}
             />
-            {questionList[0].option.items[0]}
+            {questionList[1].option.items[0]}
             <CheckBoxItems
               type="checkbox"
               id="check2"
@@ -118,6 +118,7 @@ export default function SurveyQuestion() {
             <CheckBoxItems
               type="checkbox"
               id="check3"
+              value="check3"
               onChange={e => {
                 changeHandler(e.currentTarget.checked, 'check3');
               }}
@@ -127,6 +128,7 @@ export default function SurveyQuestion() {
             <CheckBoxItems
               type="checkbox"
               id="check4"
+              value="check4"
               onChange={e => {
                 changeHandler(e.currentTarget.checked, 'check4');
               }}
@@ -136,6 +138,7 @@ export default function SurveyQuestion() {
             <CheckBoxItems
               type="checkbox"
               id="check5"
+              value="check5"
               onChange={e => {
                 changeHandler(e.currentTarget.checked, 'check5');
               }}

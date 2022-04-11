@@ -1,17 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Survey() {
   const [commentList, setCommentList] = useState({});
   const { title, header_img, created_datetime, updated_datetime } = commentList;
-
-  const navigate = useNavigate();
-
-  const goToQuestion = () => {
-    navigate('/surveyQuestion');
-  };
 
   useEffect(() => {
     fetch('/data/surveydata.json', {
@@ -29,7 +23,9 @@ export default function Survey() {
         <HeaderWrap>
           <HeaderImg src={header_img} />
           <Title>{title}</Title>
-          <NextButton onClick={goToQuestion}>시작</NextButton>
+          <Link to="/SurveyQuestion">
+            <NextButton>시작</NextButton>
+          </Link>
           <CreatedDatetime>
             설문조사 생성시간 : {created_datetime}
           </CreatedDatetime>
